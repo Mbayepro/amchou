@@ -9,7 +9,7 @@ import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#0A0A0A] text-[#FAF8F5] flex flex-col">
+    <div className="relative min-h-screen bg-[#070708] text-[#FAF8F5] flex flex-col w-full max-w-full overflow-x-hidden">
       {/* 1. Header Fixe */}
       <Header />
 

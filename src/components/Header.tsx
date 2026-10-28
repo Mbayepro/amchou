@@ -71,11 +71,11 @@ export default function Header() {
         id="header-navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#070708]/98 backdrop-blur-md border-b border-[#B8860B]/30 shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-2.5 sm:py-3"
-            : "bg-gradient-to-b from-[#070708] via-[#070708]/90 to-transparent py-3 sm:py-4"
+            ? "bg-[#070708]/98 backdrop-blur-md border-b border-[#B8860B]/30 shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-2 sm:py-3"
+            : "bg-gradient-to-b from-[#070708] via-[#070708]/90 to-transparent py-2.5 sm:py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-3">
             
             {/* Logo Brand */}
@@ -154,156 +154,168 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ==================================================================== */}
-      {/* MENU MOBILE PLEIN ÉCRAN HAUTE COUTURE                                */}
-      {/* ==================================================================== */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-fullscreen-modal"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu principal AMCHOU"
-          className="fixed inset-0 z-[99999] w-screen h-screen min-h-[100dvh] bg-[#070708] flex flex-col justify-between overflow-y-auto p-6 text-[#FAF8F5]"
-        >
-          {/* Haut du Menu : Logo + Bouton Fermer */}
-          <div>
-            <div className="flex items-center justify-between pb-5 border-b border-[#B8860B]/30">
-              <div className="flex items-center gap-2.5">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#D4AF37] bg-black">
-                  <Image
-                    src="/logo.png"
-                    alt="AMCHOU Logo"
-                    width={40}
-                    height={40}
-                    className="object-cover rounded-full w-full h-full"
-                  />
-                </div>
-                <div>
-                  <span className="font-serif tracking-widest text-lg font-bold uppercase gold-gradient-text block leading-none">
-                    AMCHOU
-                  </span>
-                  <span className="text-[9px] tracking-widest text-[#D4AF37] uppercase block mt-0.5">
-                    Dakar • Sénégal
-                  </span>
-                </div>
+      {/* Fond semi-transparent cliquable pour fermer le menu */}
+      <div
+        id="mobile-menu-backdrop"
+        onClick={closeMenu}
+        aria-hidden="true"
+        className={`fixed inset-0 z-[998] bg-black/75 backdrop-blur-sm transition-opacity duration-300 ${
+          mobileMenuOpen
+            ? "opacity-100 pointer-events-auto visible"
+            : "opacity-0 pointer-events-none invisible"
+        }`}
+      />
+
+      {/* Panneau coulissant du menu burger */}
+      <div
+        id="mobile-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu principal AMCHOU"
+        className={`fixed top-0 right-0 z-[999] h-dvh w-[88vw] max-w-sm box-border bg-[#070708] border-l border-[#B8860B]/30 flex flex-col justify-between overflow-y-auto overflow-x-hidden p-5 sm:p-6 text-[#FAF8F5] shadow-[-10px_0_40px_rgba(0,0,0,0.95)] transition-all duration-300 ease-in-out ${
+          mobileMenuOpen
+            ? "translate-x-0 visible pointer-events-auto"
+            : "translate-x-full invisible pointer-events-none"
+        }`}
+      >
+        {/* Haut du Panneau : Logo & Bouton Fermer */}
+        <div>
+          <div className="flex items-center justify-between pb-4 border-b border-[#B8860B]/30">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border-2 border-[#D4AF37] bg-black shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="AMCHOU Logo"
+                  width={36}
+                  height={36}
+                  className="object-cover rounded-full w-full h-full"
+                />
               </div>
-
-              {/* Bouton de Fermeture Très Visible */}
-              <button
-                type="button"
-                id="close-mobile-menu-btn"
-                onClick={closeMenu}
-                className="w-11 h-11 rounded-full border-2 border-[#FFD700] bg-[#161619] hover:bg-[#222228] text-[#FFD700] flex items-center justify-center focus:outline-none shadow-lg active:scale-95 transition-all cursor-pointer"
-                aria-label="Fermer le menu"
-              >
-                <X className="w-6 h-6 text-[#FFD700]" />
-              </button>
-            </div>
-
-            {/* Slogan en haut du tiroir */}
-            <div className="pt-4 pb-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#141416] border border-[#B8860B]/40 text-xs text-[#FFD700]">
-                <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" />
-                <span className="font-serif italic">« {BRAND.tagline} »</span>
+              <div className="min-w-0">
+                <span className="font-serif tracking-widest text-base font-bold uppercase gold-gradient-text block leading-none truncate">
+                  AMCHOU
+                </span>
+                <span className="text-[9px] tracking-widest text-[#D4AF37] uppercase block mt-1 truncate">
+                  Dakar • Sénégal
+                </span>
               </div>
             </div>
 
-            {/* Liste des Liens de Navigation Numérotés */}
-            <nav className="py-4 flex flex-col gap-2.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="group flex items-center justify-between py-3.5 px-4 rounded-xl bg-white/[0.03] hover:bg-gradient-to-r hover:from-[#B8860B]/25 hover:to-transparent border border-white/5 hover:border-[#D4AF37]/50 transition-all duration-200"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <span className="text-xs font-mono text-[#D4AF37] group-hover:text-[#FFD700]">
-                      {link.number}
-                    </span>
-                    <span className="font-serif text-lg tracking-wide text-[#FAF8F5] group-hover:text-[#FFD700] transition-colors">
-                      {link.label}
-                    </span>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
-                </a>
-              ))}
-            </nav>
+            {/* Bouton de Fermeture */}
+            <button
+              type="button"
+              id="close-mobile-menu-btn"
+              onClick={closeMenu}
+              className="w-10 h-10 rounded-full border border-[#FFD700]/70 bg-[#141418] hover:bg-[#202026] text-[#FFD700] flex items-center justify-center focus:outline-none shadow-md active:scale-95 transition-all cursor-pointer shrink-0"
+              aria-label="Fermer le menu"
+            >
+              <X className="w-5 h-5 text-[#FFD700]" />
+            </button>
           </div>
 
-          {/* Bas du Menu : Boutons WhatsApp, Boutiques & Réseaux Sociaux */}
-          <div className="pt-4 border-t border-white/10 space-y-3.5 pb-6">
-            
-            {/* Bouton WhatsApp Principal */}
+          {/* Slogan Prestige */}
+          <div className="pt-3.5 pb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121215] border border-[#B8860B]/35 text-[11px] text-[#FFD700] max-w-full">
+              <Sparkles className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
+              <span className="font-serif italic truncate">« {BRAND.tagline} »</span>
+            </div>
+          </div>
+
+          {/* Liste des Liens de Navigation Numérotés */}
+          <nav className="py-3 flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={closeMenu}
+                className="group flex items-center justify-between py-3 px-3.5 rounded-xl bg-white/[0.03] hover:bg-gradient-to-r hover:from-[#B8860B]/20 hover:to-transparent border border-white/5 hover:border-[#D4AF37]/50 transition-all duration-200"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] font-mono text-[#D4AF37] group-hover:text-[#FFD700]">
+                    {link.number}
+                  </span>
+                  <span className="font-serif text-base tracking-wide text-[#FAF8F5] group-hover:text-[#FFD700] transition-colors">
+                    {link.label}
+                  </span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        {/* Bas du Menu : Boutons WhatsApp, Boutiques & Réseaux Sociaux */}
+        <div className="pt-3 border-t border-white/10 space-y-3 pb-2">
+          
+          {/* Bouton WhatsApp Principal */}
+          <a
+            href={generateWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="w-full flex items-center justify-center gap-2 py-3 px-3 rounded-xl font-bold text-black gold-gradient-bg shadow-[0_0_20px_rgba(255,215,0,0.3)] min-h-[44px] text-xs uppercase tracking-wider active:scale-95 transition-transform"
+          >
+            <MessageCircle className="w-4 h-4 fill-black stroke-black shrink-0" />
+            <span className="truncate">Commander sur WhatsApp</span>
+          </a>
+
+          {/* Appel Téléphonique */}
+          <a
+            href={`tel:${BRAND.phone}`}
+            onClick={closeMenu}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-[#B8860B]/40 text-[#FAF8F5] bg-[#121215] text-[11px] font-medium hover:border-[#FFD700] min-h-[40px]"
+          >
+            <Phone className="w-3.5 h-3.5 text-[#FFD700] shrink-0" />
+            <span className="truncate">Service Client : {BRAND.phone}</span>
+          </a>
+
+          {/* Les 3 Boutiques à Dakar */}
+          <div className="p-3 rounded-xl bg-[#121215] border border-white/5 space-y-1 text-xs">
+            <div className="flex items-center gap-1.5 text-[#FFD700] font-semibold text-[10px] uppercase tracking-wider">
+              <MapPin className="w-3 h-3 shrink-0" />
+              <span>3 Boutiques à Dakar :</span>
+            </div>
+            <p className="text-[10px] text-[#A1A1AA] leading-relaxed">
+              • Ouakam (Batrain) • Keur Damel • Cheikh Anta Diop
+            </p>
+          </div>
+
+          {/* Réseaux Sociaux */}
+          <div className="flex items-center justify-center gap-3 pt-1">
+            <span className="text-[10px] text-[#A1A1AA] uppercase tracking-widest font-light">
+              Suivez-nous :
+            </span>
             <a
-              href={generateWhatsAppLink()}
+              href={BRAND.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={closeMenu}
-              className="w-full flex items-center justify-center gap-2.5 py-4 px-4 rounded-xl font-bold text-black gold-gradient-bg shadow-[0_0_25px_rgba(255,215,0,0.35)] min-h-[50px] text-xs uppercase tracking-wider active:scale-95 transition-transform"
+              className="w-8 h-8 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center transition-colors"
+              aria-label="Instagram"
             >
-              <MessageCircle className="w-5 h-5 fill-black stroke-black" />
-              <span>Commander sur WhatsApp</span>
+              <InstagramIcon className="w-3.5 h-3.5" />
             </a>
-
-            {/* Appel Téléphonique */}
             <a
-              href={`tel:${BRAND.phone}`}
-              onClick={closeMenu}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#B8860B]/40 text-[#FAF8F5] bg-[#121215] text-xs font-medium hover:border-[#FFD700] min-h-[44px]"
+              href={BRAND.socials.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center transition-colors"
+              aria-label="Facebook"
             >
-              <Phone className="w-4 h-4 text-[#FFD700]" />
-              <span>Service Client : {BRAND.phone}</span>
+              <FacebookIcon className="w-3.5 h-3.5" />
             </a>
-
-            {/* Les 3 Boutiques à Dakar */}
-            <div className="p-3.5 rounded-xl bg-[#141417] border border-white/5 space-y-1 text-xs">
-              <div className="flex items-center gap-1.5 text-[#FFD700] font-semibold text-[11px] uppercase tracking-wider">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>Nos 3 Boutiques à Dakar :</span>
-              </div>
-              <p className="text-[11px] text-[#A1A1AA] leading-relaxed">
-                • Ouakam (Batrain) • Keur Damel • Av. Cheikh Anta Diop
-              </p>
-            </div>
-
-            {/* Réseaux Sociaux dans le Menu */}
-            <div className="flex items-center justify-center gap-4 pt-1">
-              <span className="text-[10px] text-[#A1A1AA] uppercase tracking-widest font-light">
-                Suivez-nous :
-              </span>
-              <a
-                href={BRAND.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center"
-                aria-label="Instagram"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={BRAND.socials.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center"
-                aria-label="Facebook"
-              >
-                <FacebookIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={BRAND.socials.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center"
-                aria-label="TikTok"
-              >
-                <TikTokIcon className="w-4 h-4" />
-              </a>
-            </div>
-
+            <a
+              href={BRAND.socials.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#18181C] border border-[#B8860B]/40 text-[#FAF8F5] hover:text-[#FFD700] flex items-center justify-center transition-colors"
+              aria-label="TikTok"
+            >
+              <TikTokIcon className="w-3.5 h-3.5" />
+            </a>
           </div>
+
         </div>
-      )}
+      </div>
     </>
   );
 }

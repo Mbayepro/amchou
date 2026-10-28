@@ -8,17 +8,20 @@ export default function Hero() {
     <section
       id="accueil"
       aria-label="Section d'accueil AMCHOU"
-      className="relative min-h-[95vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#070708] pt-24 pb-16 sm:py-28"
+      className="relative min-h-[95vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[#070708] pt-24 pb-16 sm:py-28 w-full max-w-full"
     >
-      {/* Halo lumineux or royal d'ambiance */}
-      <div className="absolute inset-0 pointer-events-none hero-gold-glow z-0" />
-      
-      {/* Lignes et cercles géométriques subtils d'arrière-plan */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[680px] lg:w-[950px] h-[340px] sm:h-[680px] lg:h-[950px] rounded-full border border-[#D4AF37]/15 blur-[1px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] sm:w-[480px] lg:w-[650px] h-[240px] sm:h-[480px] lg:h-[650px] rounded-full border border-[#FFD700]/20 blur-[1px] pointer-events-none" />
+      {/* Conteneur d'arrière-plan et halos avec overflow-hidden strict */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none max-w-full">
+        {/* Halo lumineux or royal d'ambiance */}
+        <div className="absolute inset-0 hero-gold-glow z-0" />
+        
+        {/* Lignes et cercles géométriques subtils d'arrière-plan */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[680px] lg:w-[950px] h-[340px] sm:h-[680px] lg:h-[950px] rounded-full border border-[#D4AF37]/15 blur-[1px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] sm:w-[480px] lg:w-[650px] h-[240px] sm:h-[480px] lg:h-[650px] rounded-full border border-[#FFD700]/20 blur-[1px]" />
+      </div>
 
       {/* Contenu principal Hero */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center w-full">
         
         {/* Logo Blason Médaillon AMCHOU */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-6 rounded-full p-1 border-2 border-[#D4AF37] bg-black shadow-[0_0_35px_rgba(218,165,32,0.45)]">

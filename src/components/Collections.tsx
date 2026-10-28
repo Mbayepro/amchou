@@ -8,11 +8,13 @@ export default function Collections() {
     <section
       id="collections"
       aria-label="Nos Collections"
-      className="py-20 sm:py-28 bg-[#0D0D0E] relative border-t border-b border-[#B8860B]/15"
+      className="py-20 sm:py-28 bg-[#0A0A0D] relative border-t border-b border-[#B8860B]/15 overflow-hidden w-full max-w-full"
     >
-      {/* Halo décoratif discret */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#B8860B]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#FFD700]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Halo décoratif discret avec overflow-hidden strict */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none max-w-full">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#B8860B]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#FFD700]/5 rounded-full blur-3xl" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

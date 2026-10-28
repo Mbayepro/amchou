@@ -17,17 +17,17 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
+  themeColor: "#070708",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amchoushop.sn"),
+  metadataBase: new URL("https://amchou.vercel.app"),
   title: "AMCHOU – La noblesse en héritage | Shop & Déco Dakar",
   description:
-    "Maison de prêt-à-porter masculin d'exception et décoration d'intérieur raffinée à Dakar. Retrouvez nos collections dans nos 3 boutiques : Ouakam, Keur Damel et Avenue Cheikh Anta Diop. Commandes directes sur WhatsApp.",
+    "Boutiques de mode masculine et décoration d'intérieur haut de gamme à Dakar. Commandez directement sur WhatsApp.",
   keywords: [
     "AMCHOU",
     "AMCHOU Shop",
@@ -46,23 +46,24 @@ export const metadata: Metadata = {
     title: "AMCHOU – La noblesse en héritage | Shop & Déco Dakar",
     description:
       "Boutiques de mode masculine et décoration d'intérieur haut de gamme à Dakar. Commandez directement sur WhatsApp.",
-    url: "https://amchoushop.sn",
+    url: "https://amchou.vercel.app",
     siteName: "AMCHOU",
-    locale: "fr_SN",
+    locale: "fr_FR",
     type: "website",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "AMCHOU – La noblesse en héritage | Shop & Déco Dakar",
+        alt: "AMCHOU - La noblesse en héritage",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AMCHOU – La noblesse en héritage | Dakar",
-    description: "Prêt-à-porter masculin d'exception et décoration raffinée. 3 boutiques à Dakar.",
+    description:
+      "Prêt-à-porter masculin d'exception et décoration raffinée. 3 boutiques à Dakar.",
     images: ["/og-image.jpg"],
   },
 };
@@ -73,8 +74,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
-      <body className="bg-[#0A0A0A] text-[#FAF8F5] font-sans antialiased selection:bg-[#B8860B]/30 selection:text-[#FFD700] min-h-screen">
+    <html
+      lang="fr"
+      className={`${playfair.variable} ${inter.variable} scroll-smooth overflow-x-hidden w-full max-w-[100vw]`}
+      style={{ overflowX: "clip", width: "100%", maxWidth: "100vw" }}
+    >
+      <body
+        className="bg-[#070708] text-[#FBF9F5] font-sans antialiased selection:bg-[#B8860B]/30 selection:text-[#FFD700] min-h-screen overflow-x-hidden w-full max-w-[100vw]"
+        style={{ overflowX: "clip", width: "100%", maxWidth: "100vw" }}
+      >
         {children}
       </body>
     </html>

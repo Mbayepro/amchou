@@ -7,10 +7,12 @@ export default function Stores() {
     <section
       id="boutiques"
       aria-label="Nos boutiques à Dakar"
-      className="py-20 sm:py-28 bg-[#0D0D0E] relative border-t border-b border-[#B8860B]/15"
+      className="py-20 sm:py-28 bg-[#0A0A0D] relative border-t border-b border-[#B8860B]/15 overflow-hidden w-full max-w-full"
     >
-      {/* Halo discret */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#B8860B]/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Halo discret avec overflow-hidden strict */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none max-w-full">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#B8860B]/5 rounded-full blur-[100px]" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
